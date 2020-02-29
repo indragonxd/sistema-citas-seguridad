@@ -38,13 +38,23 @@ export const navRoutes: NavRoute[] = [
                 m => m.EspecialidadesModule,
             ),
     },
-    {
-        path: 'especialidades/:idEspecialidades',
+    {   
+        path: 'especialidades/:idEspecialidad',
         loadChildren: () =>
             import('./pages/especialidades/especialidades-ver-mas/especialidades-ver-mas.module').then(
                 m => m.EspecialidadesVerMasModule,
+        ),
+    },
+    {
+        data: { title: 'Historial Citas' },
+        icon: 'home',
+        path: 'historial-citas',
+        loadChildren: () =>
+            import('./pages/historial-citas/historial-citas.module').then(
+                m => m.HistorialCitasModule,
             ),
     },
+    
     {
         path: '',
         redirectTo: 'home',

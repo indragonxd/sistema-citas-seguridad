@@ -1,0 +1,30 @@
+<h1 class="text-center">Historial de Reserva de Citas</h1>
+<div style="background-color:#F2F2F2; opacity: 0.88;">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Medico</th>
+        <th scope="col">Especialidad</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Consultorio</th>
+        <th scope="col">Estado de Pago</th>
+        <th scope="col">Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let cita of citas; let id=index'>
+        <th scope="row">{{id+1}}</th>
+        <td>{{cita.fecha}}</td>
+        <td>Dr. {{cita.medico_id.nombres}} {{cita.medico_id.apellidoPaterno}} {{cita.medico_id.apellidoMaterno}}</td>
+        <td>{{cita.medico_id.especialidad_id.nombre}}</td>
+        <td>S/.{{cita.medico_id.especialidad_id.precio}}.00 soles</td>
+        <td>{{cita.medico_id.especialidad_id.numConsultorio}}</td>
+        <th *ngIf="cita.estadoPago==true">PAGADO</th>
+        <th *ngIf="cita.estadoPago==false">PENDIENTE</th>
+        <td>{{cita.estado}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

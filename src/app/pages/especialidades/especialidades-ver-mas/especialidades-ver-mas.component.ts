@@ -10,33 +10,34 @@ import { EspecialidadService } from 'src/app/core/services/especialidad.service'
 })
 export class EspecialidadesVerMasComponent implements OnInit {
 
-  idEspecialidad : string;
-  medicos : Medico[];
-  especialidad : Especialidad;
+  idEspecialidad: string;
+  medicos: Medico[];
+  especialidad: Especialidad;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private medicoService:MedicoService ,
-    private especialidadService:EspecialidadService) { }
+    private medicoService: MedicoService,
+    private especialidadService: EspecialidadService) { }
 
   ngOnInit() {
     this.idEspecialidad = this.route.snapshot.params.idEspecialidad;
-    
+
     this.especialidadService.getEspecialidadById(this.idEspecialidad).
-    subscribe(data=>{
-      this.especialidad=data;
-    })
+      subscribe(data => {
+        this.especialidad = data;
+        this.medicoService.getMedicosByIdEspecialidad(this.idEspecialidad).
+          subscribe(data => {
+            this.medicos = data;
+          })
+      })
 
-    this.medicoService.getMedicosByIdEspecialidad(this.idEspecialidad).
-    subscribe(data=>{
-      this.medicos=data;
-    })
+
 
   }
-  volver(){
-    this.router.navigate(['/especialidades']);
+  volver() {
+    this.router.navigate(['/nav/especialidades']);
   }
-  reservarCita(){
+  reservarCita() {
     this.router.navigate(['/reserva-cita']);
   }
 

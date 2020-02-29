@@ -21,7 +21,7 @@ export class EspecialidadesComponent implements OnInit {
   }
 
   verDoctores(idEspecialidad){
-    this.router.navigate(['/especialidades', idEspecialidad]);
+    this.router.navigate(['/nav/especialidades', idEspecialidad]);
   }
 
 }
