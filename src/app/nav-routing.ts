@@ -92,8 +92,16 @@ export const navRoutes: NavRoute[] = [
             import('./pages/carga-horario/carga-horario-masiva/carga-horario-masiva.module').then(
                 m => m.CargaHorarioMasivaModule,
             ),
-
-
+    },
+    {   
+        tipo: 'administrador',
+        data: { title: 'Usuarios' },
+        icon: 'home',
+        path: 'usuarios',
+        loadChildren: () =>
+            import('./pages/usuarios/usuarios.module').then(
+                m => m.UsuariosModule,
+            ),
     },
     {
         path: '',

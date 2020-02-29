@@ -6,10 +6,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PacienteService {
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) { }
 
-  }
-  getPacienteById(idPaciente){
+  getPacienteById(idPaciente) {
     return this.http.get<Paciente>('http://localhost:8080/clinica/pacientes/' + idPaciente);
+  }
+  savePaciente(paciente: Paciente) {
+    return this.http.post<Paciente>('http://localhost:8080/clinica/pacientes/', paciente);
   }
 }

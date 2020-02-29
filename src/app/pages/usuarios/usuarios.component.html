@@ -1,0 +1,165 @@
+<button class="btn btn-primary" type="button" (click)="enviar(nombreModal)">Agregar usuario</button>
+
+<div style="background-color:#F2F2F2; opacity: 0.88;">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">DNI</th>
+        <th scope="col">Perfil</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let usuario of usuarios; let id=index'>
+        <th scope="row">{{id+1}}</th>
+        <td>{{usuario.dni}}</td>
+        <td>{{usuario.perfil}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #nombreModal let-c="close" let-d="dismiss">
+
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">Agregar Usuario</h4>
+      <button class="close" (click)="c('')">
+        <span aria-hidden="false">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="container" id="containerModal">
+
+        <div class="row">
+          <div class="col-12">
+            <label>DNI:</label>
+            <input type="text" [(ngModel)]="dni" id="dni" class="form-control" placeholder="DNI" aria-label="Username"
+              aria-describedby="basic-addon1">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <label>Tipo de Perfil:</label>
+            <select [(ngModel)]="perfilSelect" class="custom-select" (change)="actualizarModal()">
+              <option [value]="perfil" *ngFor='let perfil of perfiles'>{{perfil}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div *ngIf="perfilSelect=='Paciente' || perfilSelect=='Médico' || perfilSelect=='Administrador'">
+
+          <form #formUsuario="ngForm" (ngSubmit)="saveUsuario(formUsuario)">
+
+            <div *ngIf="perfilSelect=='Paciente' || perfilSelect=='Médico'" class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Nombres</span>
+              </div>
+              <input type="text" name="nombres" ngModel class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div *ngIf="perfilSelect=='Paciente' || perfilSelect=='Médico'" class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">Apellido Paterno</span>
+              </div>
+              <input type="text" name="apellidoPaterno" ngModel class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
+            </div>
+
+            <div *ngIf="perfilSelect=='Paciente' || perfilSelect=='Médico'" class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-lg">Apellido Materno</span>
+              </div>
+              <input type="text" name="apellidoMaterno" ngModel class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-lg">
+            </div>
+
+            <div *ngIf="perfilSelect=='Paciente'" class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">Sexo</span>
+              </div>
+              <select class="form-control" name="sexo" ngModel>
+                <option>--SELECCIONE--</option>
+                <option>Masculino</option>
+                <option>Femenino</option>
+              </select>
+            </div>
+
+            <div *ngIf="perfilSelect=='Paciente'" class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">Estado Civil</span>
+              </div>
+              <select class="form-control" name="estadoCivil" ngModel>
+                <option>--SELECCIONE--</option>
+                <option>Soltero</option>
+                <option>Casado</option>
+                <option>Viudo</option>
+                <option>Divorciado</option>
+              </select>
+            </div>
+
+            <div *ngIf="perfilSelect=='Paciente'" class="input-group  mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Dirección</span>
+              </div>
+              <input type="text" name="direccion" ngModel class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div *ngIf="perfilSelect=='Paciente'" class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">Correo</span>
+              </div>
+              <input type="text" name="correo" ngModel class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
+            </div>
+
+            <div *ngIf="perfilSelect=='Paciente' || perfilSelect=='Administrador'" class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-lg">Contraseña</span>
+              </div>
+              <input type="password" name="password" ngModel class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-lg">
+            </div>
+
+            <div *ngIf="perfilSelect=='Paciente' || perfilSelect=='Administrador'" class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-lg">Confirmar contraseña</span>
+              </div>
+              <input type="password" name="confirmarPassword" ngModel class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-lg">
+            </div>
+
+            <div *ngIf="perfilSelect=='Médico'" class="input-group  mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Especialidad</span>
+              </div>
+              <select class="custom-select" name="especialidad" [(ngModel)]="especialidadSelect">
+                <option [ngValue]="especialidad" *ngFor="let especialidad of especialidades">{{especialidad.nombre}}</option>
+              </select>
+            </div>
+
+            <div *ngIf="perfilSelect=='Médico'" class="input-group  mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">URL</span>
+              </div>
+              <input type="text" name="url" ngModel class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="c('')">Close</button>
+            <button id="btnPagar" type="submit" class="btn btn-primary">Guardar</button>
+
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</ng-template>

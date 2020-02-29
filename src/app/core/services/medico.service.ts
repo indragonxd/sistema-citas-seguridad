@@ -17,4 +17,7 @@ export class MedicoService {
   getMedicosByIdEspecialidad(idEspecialidad){
     return this.http.get<Medico[]>('http://localhost:8080/clinica/medicos/especialidad/' + idEspecialidad);
   }
+  saveMedico(medico: Medico){
+    return this.http.post<Medico>('http://localhost:8080/clinica/medicos/', medico);
+  }
 }

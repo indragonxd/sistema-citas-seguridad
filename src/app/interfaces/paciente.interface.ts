@@ -4,6 +4,6 @@ interface Paciente {
   apellidoPaterno:string;
   apellidoMaterno:string;
   sexo:string;
+  estadoCivil:string;
   direccion:string;
-  fechaInscripcion:string;
 }
