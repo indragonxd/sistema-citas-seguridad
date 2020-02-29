@@ -1,0 +1,21 @@
+<h1 class="text-center">Carga Manual de Horarios</h1>
+<div style="background-color:#F2F2F2; opacity: 0.88;">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Medico</th>
+        <th scope="col">Especialidad</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let medico of medicos; let id=index'>
+        <th scope="row">{{id+1}}</th>
+        <td>Dr. {{medico.nombres}} {{medico.apellidoPaterno}} {{medico.apellidoMaterno}}</td>
+        <td>{{medico.especialidad_id.nombre}}</td>
+        <td><button class="btn btn-primary" (click)="editarHorario(medico.idMedico)">ver</button> </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
