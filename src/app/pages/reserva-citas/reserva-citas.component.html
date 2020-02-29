@@ -1,0 +1,45 @@
+<h1 class="text-center container mt-5">CITAS MÉDICAS</h1>
+  <div class="row ml-3">
+    <div class="col-3">
+        <div class="form-group col">
+          <label >Especialidad</label>
+          <select [(ngModel)]="especialidadSelect" class="custom-select" (change)="actualizarSelect($event)" >
+            <option [ngValue]="especialidad" *ngFor='let especialidad of especialidades'>{{especialidad.nombre}}</option>
+          </select>
+        </div>
+        <div class="form-group col">
+          <label for="inputEmail24">Medico</label>
+          <select [(ngModel)]="medicoSelect" class="custom-select" (change)="llenarTabla($event)">
+            <option [ngValue]='medico' *ngFor='let medico of medicosFiltrados' >Dr. {{medico.nombres}} {{medico.apellidoPaterno}} {{medico.apellidoMaterno}}</option>
+          </select>
+        </div>
+        <div class="form-group col">
+          <label for="inputEmail24">Fecha Cita</label>
+          <input type="date" class="form-control" id="inputEmail24" (ngModel)="fechaCita"(change)="obtenerFecha($event)"> 
+        </div>
+        <button  class="btn btn-primary ml-3 mt-3" (click)="generarCita()">Reservar Cita</button>    
+      </div>
+    <div class="col-8">
+      <table class="offset-1 table table-hover mt-4">
+        <thead>
+          <tr>
+            <th scope="col">Dia</th>
+            <th scope="col">Hora Inicio</th>
+            <th scope="col">Hora Fin</th>
+            <th scope="col">Consultorio</th>
+            <th scope="col">Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let horario of horarios'>
+            <th scope="row">{{horario.dia}}</th>
+            <td>{{horario.horaInicio}}</td>
+            <td>{{horario.horaFin}}</td>
+            <td>{{horario.medico_id.especialidad_id.numConsultorio}}</td>
+            <th>{{horario.medico_id.especialidad_id.precio}}</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+

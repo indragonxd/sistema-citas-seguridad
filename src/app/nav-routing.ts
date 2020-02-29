@@ -38,6 +38,15 @@ export const navRoutes: NavRoute[] = [
                 m => m.EspecialidadesModule,
             ),
     },
+    {
+        data: { title: 'Reserva Citas' },
+        icon: 'home',
+        path: 'reserva-citas',
+        loadChildren: () =>
+            import('./pages/reserva-citas/reserva-citas.module').then(
+                m => m.ReservaCitasModule,
+            ),
+    },
     {   
         path: 'especialidades/:idEspecialidad',
         loadChildren: () =>
@@ -54,8 +63,33 @@ export const navRoutes: NavRoute[] = [
                 m => m.HistorialCitasModule,
             ),
     },
-    
     {
+        path: 'reserva-cita/:idMedico/:idPaciente/:fecha',
+        loadChildren: () =>
+            import('./pages/reserva-citas/tipo-pago/tipo-pago.module').then(
+                m => m.TipoPagoModule,
+            ),
+    },
+    {
+        path: 'carga-manual-horario/:idMedico',
+        loadChildren: () =>
+            import('./pages/carga-horario/carga-horario-manual/medico-combos/medico-combos.module').then(
+                m => m.MedicoCombosModule,
+            ),
+    },
+    {   
+        data: { title: 'Carga Masiva Horarios' },
+        icon: 'home',
+        path: 'carga-masiva-horario',
+        loadChildren: () =>
+            import('./pages/carga-horario/carga-horario-masiva/carga-horario-masiva.module').then(
+                m => m.CargaHorarioMasivaModule,
+            ),
+    },
+   
+    
+    {   
+        
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',

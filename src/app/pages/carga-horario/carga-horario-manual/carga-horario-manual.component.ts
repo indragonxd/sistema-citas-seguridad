@@ -18,7 +18,7 @@ export class CargaManualHorarioComponent implements OnInit {
     })
   }
   editarHorario(idMedico){
-    this.router.navigate(['/carga-manual-horario',idMedico]);
+    this.router.navigate(['/nav/carga-manual-horario',idMedico]);
   }
 
 }

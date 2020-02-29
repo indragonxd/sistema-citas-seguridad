@@ -1,0 +1,23 @@
+<div class="form-group row">
+  <div class="col-sm-12 col-md-12 col-lg-12">
+    <ngx-dropzone (change)="onSelect($event)"
+        [multiple]="configCargaMisc.multiple"
+        [accept]="configCargaMisc.accept"
+        [maxFileSize]="configCargaMisc.maxFileSize"
+        [expandable]="configCargaMisc.expandable">
+      <ngx-dropzone-label>Arrastre los archivos aquí</ngx-dropzone-label>
+      <ngx-dropzone-preview *ngFor="let f of files"
+        [removable]="true"
+        (removed)="onRemove(f)">
+        <ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label>
+      </ngx-dropzone-preview>
+    </ngx-dropzone>
+  </div>
+</div>
+<div class="form-group row text-center">
+  <div class="col-sm-12 col-md-12 col-lg-12">
+    <button (click)="cargarArchivo()" class="btn btn-success" [disabled]="configCargaMisc.loading">
+      <i class="fa" [ngClass]="configCargaMisc.class"></i> Cargar
+    </button>
+  </div>
+</div>

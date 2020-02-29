@@ -5,7 +5,7 @@ import { EspecialidadesVerMasComponent } from './especialidades-ver-mas.componen
 const routes: Routes = [
   {
     path: '',
-    data: { shouldReuse: true, key: 'especialidades/:idEspecialidad' },
+    data: {  key: 'especialidades/:idEspecialidad' },
     component: EspecialidadesVerMasComponent,
 },
 ];

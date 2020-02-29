@@ -1,0 +1,135 @@
+<button class="btn btn-primary" (click)="volver()">Volver</button>
+<h2 class="text-center">MÉTODO DE PAGO</h2>
+<div class="container" id="container">
+  <div class="button">
+    <button class="btn btn-primary" (click)="enviar(nombreModal)">PAGO ONLINE</button>
+    <button class="btn btn-primary" (click)="generarCita('presencial')">PAGO PRESENCIAL</button>
+  </div>
+  <div class="text">
+    <p>PAGO ONLINE: El paciente puede efectuar el pago correspondiente de su cita a través de internet con una
+      tarjeta VISA (Débito o crédito). Después de dicho pago su cita estará confirmada.</p>
+    <p>PAGO PRESENCIAL: El paciente puede efectuar el pago de su cita acercándose a la clínica universitaria, desde
+      ese momento su cita estará confirmada.</p>
+  </div>
+  <div class="obs">
+    <label>Obs: Los pacientes que realicen el pago presencial, acercarse media hora antes de la cita
+      escogida.</label>
+  </div>
+
+  <ng-template #nombreModal let-c="close" let-d="dismiss">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" (click)="c('')">
+          <span aria-hidden="false">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/UNMSM_escudo_XVI-XXI_transparente_siglas_nombre_vertical.svg/1200px-UNMSM_escudo_XVI-XXI_transparente_siglas_nombre_vertical.svg.png" width="160px" height="180px">
+
+        <div class="container" id="containerModal">
+
+          <div class="row">
+            <div class="col-12">
+              <input type="text" id="numTarjeta" class="form-control" placeholder="Número de Tarjeta" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <input type="text" id="caducidad" class="form-control" placeholder="MM/AA" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+            <div class="col-6">
+              <input type="text" class="form-control" placeholder="CVV" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <input type="text" class="form-control" placeholder="Nombres" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+            <div class="col-6">
+              <input type="text" class="form-control" placeholder="Apellidos" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <input type="text" class="form-control" placeholder="Correo electrónico" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+          </div>
+
+          <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+          <button id="btnPagar" type="button" class="btn btn-primary">Pagar S/.25.00</button>
+
+          <script>
+
+            var contTarjeta = 0;
+            var x = document.getElementById("numTarjeta");
+            x.addEventListener("keypress", function () {
+                contTarjeta++
+                if (contTarjeta == 5 || contTarjeta == 9 || contTarjeta == 13) {
+                    console.log("escribiendo..", this.value);
+                    console.log(contTarjeta);
+                    this.value = this.value + '-';
+                }
+            })
+          
+            var contCaducidad = 0;
+            var x = document.getElementById("caducidad");
+            x.addEventListener("keypress", function () {
+                contCaducidad++
+                if (contCaducidad == 3) {
+                    console.log("escribiendo..", this.value);
+                    console.log(contCaducidad);
+                    this.value = this.value + '/';
+                }
+            })
+          </script>
+        </div>
+      </div>
+    </div>
+
+  </ng-template>
+
+</div>
+
+
+<!--
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
+(click)="showModal=true">
+    Launch demo modal
+  </button>
+  
+  <div class="modal fade" id="exampleModalCenter" [ngClass]="{'show':showModal}">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+
+    </div>
+  </div> -->
+
+<!--<button type="button" class="btn btn-danger" (click)="enviar(nombreModal)">Abrir</button>-->

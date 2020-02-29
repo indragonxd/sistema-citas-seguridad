@@ -1,0 +1,30 @@
+<div class="container">
+  <div ><button class="btn btn-primary" (click)="agregarHorario()">Agregar</button> </div>
+  <div class="row" *ngFor="let horario of horarios">
+    <div class="col-3">
+      <label >Hora Inicio</label>
+      <select  [(ngModel)]="horario.horaInicio" class="custom-select">
+        <option [ngValue]='hora' *ngFor='let hora of horas'> {{hora}} </option>
+      </select>
+    </div>
+    <div class="col-3">
+      <label >Fin</label>
+      <select  [(ngModel)]="horario.horaFin" class="custom-select">
+        <option [ngValue]='hora' *ngFor='let hora of horas'> {{hora}} </option>
+      </select>
+    </div>
+    <div class="col-3">
+      <label >Dia</label>
+      <select [(ngModel)]="horario.dia"  class="custom-select">
+        <option [ngValue]='dia' *ngFor='let dia of dias'> {{dia}} </option>
+      </select>
+    </div>
+    <div class="col-3">
+      <div class="row mt-4">
+        <div class="col-2 offset-1"><button class="btn btn-secondary">-</button> </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="btn btn-primary">Guardar</div>
+</div>
