@@ -14,15 +14,27 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
     isOpen = true;
-
+    dni:string;
+    usuario:Usuario;
     constructor(
         private navigationService: NavigationService,
         private authService: AuthService,
         private router: Router,
+        private route: ActivatedRoute,
+    
     ) {}
 
-    ngOnInit() {}
-
+    ngOnInit() {
+        this.dni = this.route.snapshot.params.dni;
+        this.authService.getUser(this.dni).subscribe(data => {
+            this.usuario = data;
+            console.log(data);
+        });
+       
+    }
+    ngAfterContentChecked(){
+        
+    }
     public toggleSideNav() {
         this.isOpen = !this.isOpen;
     }

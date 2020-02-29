@@ -6,13 +6,15 @@ export interface NavRoute extends Route {
     icon?: string;
     group?: string;
     groupedNavRoutes?: NavRoute[];
+    tipo?: string;
 }
 
-export const sideNavPath = 'nav';
+export const sideNavPath = 'nav/:dni';
 
 export const navRoutes: NavRoute[] = [
     {
-        data: { title: 'Home' },
+        tipo: 'paciente',
+        data: { title: 'inicio' },
         icon: 'home',
         path: 'home',
         loadChildren: () =>
@@ -21,6 +23,7 @@ export const navRoutes: NavRoute[] = [
             ),
     },
     {
+        tipo: 'administrador',
         data: { title: 'Carga Manual Horarios' },
         icon: 'home',
         path: 'carga-manual-horario',
@@ -30,6 +33,7 @@ export const navRoutes: NavRoute[] = [
             ),
     },
     {
+        tipo: 'paciente',
         data: { title: 'Especialidades' },
         icon: 'home',
         path: 'especialidades',
@@ -39,6 +43,7 @@ export const navRoutes: NavRoute[] = [
             ),
     },
     {
+        tipo: 'paciente',
         data: { title: 'Reserva Citas' },
         icon: 'home',
         path: 'reserva-citas',
@@ -47,14 +52,15 @@ export const navRoutes: NavRoute[] = [
                 m => m.ReservaCitasModule,
             ),
     },
-    {   
+    {
         path: 'especialidades/:idEspecialidad',
         loadChildren: () =>
             import('./pages/especialidades/especialidades-ver-mas/especialidades-ver-mas.module').then(
                 m => m.EspecialidadesVerMasModule,
-        ),
+            ),
     },
     {
+        tipo: 'paciente',
         data: { title: 'Historial Citas' },
         icon: 'home',
         path: 'historial-citas',
@@ -77,7 +83,8 @@ export const navRoutes: NavRoute[] = [
                 m => m.MedicoCombosModule,
             ),
     },
-    {   
+    {
+        tipo: 'administrador',
         data: { title: 'Carga Masiva Horarios' },
         icon: 'home',
         path: 'carga-masiva-horario',
@@ -85,11 +92,10 @@ export const navRoutes: NavRoute[] = [
             import('./pages/carga-horario/carga-horario-masiva/carga-horario-masiva.module').then(
                 m => m.CargaHorarioMasivaModule,
             ),
+
+
     },
-   
-    
-    {   
-        
+    {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',

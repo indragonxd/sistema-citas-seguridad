@@ -15,6 +15,7 @@ export class AuthService extends CrudService {
     endpoint = 'auth';
     token: string;
     redirectUrl: string;
+    usuario:Usuario;
 
     constructor(http: HttpClient, private storage: StorageService) {
         super(http);
@@ -34,19 +35,31 @@ export class AuthService extends CrudService {
 
     public async mockLogin(email: string, password: string) {
         try {
-            if (!(email === 'user' && password === 'user')) {
-                throw new Error(
-                    'When using mockLogin, login with credentials: \nemail: user\npassword:user',
-                );
-            }
-            this.token = 'user';
-            this.storage.save(StorageKey.AUTH_TOKEN, this.token);
-            return this.redirectUrl;
+            this.getLogin(email,password).subscribe(data => {
+                this.usuario = data;
+                console.log(data);
+                console.log(this.usuario);
+                if (!this.usuario) {
+                    throw new Error(
+                        'When using mockLogin, login with credentials: \nemail: user\npassword:user',
+                    );
+                }
+                this.token = 'user';
+                this.storage.save(StorageKey.AUTH_TOKEN, this.token);
+                return this.redirectUrl;
+            });
+            
         } catch (e) {
             return Promise.reject(e.message);
         }
     }
+    public getLogin(dni: string, password: string) {
+        return this.http.get<Usuario>('http://localhost:8080/clinica/login/' + dni + '/' + password);
+    }
 
+    public getUser(dni:string){
+        return this.http.get<Usuario>('http://localhost:8080/clinica/usuarios/' + dni);
+    }
     public getToken(): string {
         return this.token;
     }

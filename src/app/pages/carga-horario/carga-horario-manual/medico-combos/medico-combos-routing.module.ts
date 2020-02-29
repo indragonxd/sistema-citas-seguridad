@@ -5,7 +5,7 @@ import { MedicoCombosComponent } from './medico-combos.component';
 const routes: Routes = [
   {
     path: '',
-    data: { shouldReuse: true, key: 'carga-manual-horario/:idMedico' },
+    data: { key: 'carga-manual-horario/:idMedico' },
     component: MedicoCombosComponent,
 },
 ];

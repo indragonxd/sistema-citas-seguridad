@@ -27,9 +27,11 @@ export class LoginPageComponent implements OnInit {
                 email,
                 password,
             )) as string;
-            this.navigateTo(url);
+            console.log(url);
+            console.log('soy el url')
+            this.navigateTo('nav/'+this.email);
         } catch (e) {
-            this.errorMessage = 'Wrong Credentials!';
+            this.errorMessage = 'Credencial Incorrecto!';
             console.error('Unable to Login!\n', e);
         }
     }

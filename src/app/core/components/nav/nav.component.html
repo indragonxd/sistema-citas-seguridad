@@ -4,8 +4,10 @@
             <app-logo></app-logo>
         </div>
         <mat-nav-list>
-            <app-nav-menu-item *ngFor="let navigationItem of getNavigationItems()"
-                               [navigationItem]="navigationItem"></app-nav-menu-item>
+            <div *ngFor="let navigationItem of getNavigationItems()">
+                <app-nav-menu-item [navigationItem]="navigationItem" *ngIf='navigationItem.tipo == usuario.perfil'></app-nav-menu-item>
+            </div>
+            
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
