@@ -1,21 +1,24 @@
 <button class="btn btn-primary" (click)="volver()">Volver</button>
-<h2 class="text-center">MÉTODO DE PAGO</h2>
+<h2 class="text-center mb-5">MÉTODO DE PAGO</h2>
 <div class="container" id="container">
-  <div class="button">
-    <button class="btn btn-primary" (click)="enviar(nombreModal)">PAGO ONLINE</button>
-    <button class="btn btn-primary" (click)="generarCita('presencial')">PAGO PRESENCIAL</button>
+  <div class="row">
+    <div class="col-6 button">
+      <button class="btn btn-primary" (click)="enviar(nombreModal)">PAGO ONLINE</button>
+    </div>
+    <div class="col-6">
+      <p>PAGO ONLINE: El paciente puede efectuar el pago correspondiente de su cita a través de internet con una
+        tarjeta VISA (Débito o crédito). Después de dicho pago su cita estará confirmada.</p>
+    </div>
   </div>
-  <div class="text">
-    <p>PAGO ONLINE: El paciente puede efectuar el pago correspondiente de su cita a través de internet con una
-      tarjeta VISA (Débito o crédito). Después de dicho pago su cita estará confirmada.</p>
-    <p>PAGO PRESENCIAL: El paciente puede efectuar el pago de su cita acercándose a la clínica universitaria, desde
-      ese momento su cita estará confirmada.</p>
+  <div class="row">
+    <div class="col-6">
+      <button class="btn btn-primary" (click)="generarCita('presencial')">PAGO PRESENCIAL</button>
+    </div>
+    <div class="col-6">
+      <p>PAGO PRESENCIAL: El paciente puede efectuar el pago de su cita acercándose a la clínica universitaria, desde
+        ese momento su cita estará confirmada.</p>
+    </div>
   </div>
-  <div class="obs">
-    <label>Obs: Los pacientes que realicen el pago presencial, acercarse media hora antes de la cita
-      escogida.</label>
-  </div>
-
   <ng-template #nombreModal let-c="close" let-d="dismiss">
 
     <div class="modal-content">
