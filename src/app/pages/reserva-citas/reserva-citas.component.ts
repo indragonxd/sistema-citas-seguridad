@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EspecialidadService } from 'src/app/core/services/especialidad.service';
 import { MedicoService } from 'src/app/core/services/medico.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HorarioService } from 'src/app/core/services/horario.service';
 import { cita } from 'src/app/interfaces/clases/cita.class';
 
@@ -17,7 +17,7 @@ export class ReservaCitasComponent implements OnInit {
 
   medicosFiltrados: Medico[];
   especialidadSelect:Especialidad;
-
+  dni:string;
   citaMedica:cita;
   medicoSelect: Medico;
   fechaCita:Date; 
@@ -26,8 +26,9 @@ export class ReservaCitasComponent implements OnInit {
     private especialidadService:EspecialidadService, 
     private medicoService:MedicoService, 
     private horarioService:HorarioService,
-    private router: Router ) { 
-
+    private router: Router,
+    private route:ActivatedRoute) { 
+    
     this.especialidadService.getEspecialidades().
     subscribe(data=>{
       this.especialidades=data;
@@ -38,7 +39,10 @@ export class ReservaCitasComponent implements OnInit {
     });
   }
     
-  ngOnInit() { }
+  ngOnInit() {
+    this.dni = localStorage.getItem('dniPaciente');
+    console.log(this.dni);
+   }
 
   actualizarSelect(){
     this.medicosFiltrados = this.getMedicosFiltrados();
@@ -60,7 +64,7 @@ export class ReservaCitasComponent implements OnInit {
   }
 
   async generarCita(){
-    this.router.navigate(['/nav/reserva-cita',this.medicoSelect.idMedico, '73524246', this.fechaCita]);
+    this.router.navigate(['/nav/'+this.dni+'/reserva-cita',this.medicoSelect.idMedico, this.dni, this.fechaCita]);
   }
 
 }

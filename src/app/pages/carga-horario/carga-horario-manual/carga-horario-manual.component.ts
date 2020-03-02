@@ -9,16 +9,18 @@ import { Router } from '@angular/router';
 })
 export class CargaManualHorarioComponent implements OnInit {
   medicos: Medico[];
+  dni:string;
   constructor(private medicoService:MedicoService , private router:Router) { }
 
   ngOnInit() {
     this.medicoService.getMedicos().
     subscribe(data=>{
       this.medicos=data;
-    })
+    });
+    this.dni = localStorage.getItem('dniPaciente');
   }
   editarHorario(idMedico){
-    this.router.navigate(['/nav/carga-manual-horario',idMedico]);
+    this.router.navigate(['/nav/'+this.dni+'/carga-manual-horario',idMedico]);
   }
 
 }

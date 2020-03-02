@@ -23,13 +23,14 @@ export class NavComponent implements OnInit {
         private route: ActivatedRoute,
     
     ) {}
-
+    
     ngOnInit() {
         this.dni = this.route.snapshot.params.dni;
         this.authService.getUser(this.dni).subscribe(data => {
             this.usuario = data;
             console.log(data);
         });
+        localStorage.setItem("dniPaciente",this.dni);
        
     }
     ngAfterContentChecked(){

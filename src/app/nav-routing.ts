@@ -53,6 +53,7 @@ export const navRoutes: NavRoute[] = [
             ),
     },
     {
+        tipo:'paciente',
         path: 'especialidades/:idEspecialidad',
         loadChildren: () =>
             import('./pages/especialidades/especialidades-ver-mas/especialidades-ver-mas.module').then(
@@ -70,13 +71,15 @@ export const navRoutes: NavRoute[] = [
             ),
     },
     {
+        tipo:'paciente',
         path: 'reserva-cita/:idMedico/:idPaciente/:fecha',
         loadChildren: () =>
             import('./pages/reserva-citas/tipo-pago/tipo-pago.module').then(
                 m => m.TipoPagoModule,
             ),
     },
-    {
+    {   
+        tipo:'administrador',
         path: 'carga-manual-horario/:idMedico',
         loadChildren: () =>
             import('./pages/carga-horario/carga-horario-manual/medico-combos/medico-combos.module').then(

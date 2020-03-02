@@ -10,18 +10,19 @@ import { Router } from '@angular/router';
 export class EspecialidadesComponent implements OnInit {
 
   especialidades : Especialidad[];
-  
+  dni:string;
   constructor(private especialidadService:EspecialidadService, private router:Router) { }
 
   ngOnInit() {
     this.especialidadService.getEspecialidades().
     subscribe(data=>{
       this.especialidades=data;
-    })
+    });
+    this.dni = localStorage.getItem('dniPaciente');
   }
 
   verDoctores(idEspecialidad){
-    this.router.navigate(['/nav/especialidades', idEspecialidad]);
+    this.router.navigate(['/nav/'+this.dni+'/especialidades', idEspecialidad]);
   }
 
 }
